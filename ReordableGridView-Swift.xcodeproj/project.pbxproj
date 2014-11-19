@@ -1,0 +1,420 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		B2C47F671A1C9078002FDA24 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C47F661A1C9078002FDA24 /* AppDelegate.swift */; };
+		B2C47F691A1C9078002FDA24 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C47F681A1C9078002FDA24 /* ViewController.swift */; };
+		B2C47F6C1A1C9078002FDA24 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2C47F6A1A1C9078002FDA24 /* Main.storyboard */; };
+		B2C47F6E1A1C9078002FDA24 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B2C47F6D1A1C9078002FDA24 /* Images.xcassets */; };
+		B2C47F711A1C9078002FDA24 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = B2C47F6F1A1C9078002FDA24 /* LaunchScreen.xib */; };
+		B2C47F7D1A1C9078002FDA24 /* ReordableGridView_SwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C47F7C1A1C9078002FDA24 /* ReordableGridView_SwiftTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		B2C47F771A1C9078002FDA24 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B2C47F591A1C9078002FDA24 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B2C47F601A1C9078002FDA24;
+			remoteInfo = "ReordableGridView-Swift";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		B2C47F611A1C9078002FDA24 /* ReordableGridView-Swift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ReordableGridView-Swift.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B2C47F651A1C9078002FDA24 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B2C47F661A1C9078002FDA24 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		B2C47F681A1C9078002FDA24 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		B2C47F6B1A1C9078002FDA24 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		B2C47F6D1A1C9078002FDA24 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		B2C47F701A1C9078002FDA24 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		B2C47F761A1C9078002FDA24 /* ReordableGridView-SwiftTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ReordableGridView-SwiftTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B2C47F7B1A1C9078002FDA24 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B2C47F7C1A1C9078002FDA24 /* ReordableGridView_SwiftTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReordableGridView_SwiftTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B2C47F5E1A1C9078002FDA24 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B2C47F731A1C9078002FDA24 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		B2C47F581A1C9078002FDA24 = {
+			isa = PBXGroup;
+			children = (
+				B2C47F631A1C9078002FDA24 /* ReordableGridView-Swift */,
+				B2C47F791A1C9078002FDA24 /* ReordableGridView-SwiftTests */,
+				B2C47F621A1C9078002FDA24 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		B2C47F621A1C9078002FDA24 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B2C47F611A1C9078002FDA24 /* ReordableGridView-Swift.app */,
+				B2C47F761A1C9078002FDA24 /* ReordableGridView-SwiftTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B2C47F631A1C9078002FDA24 /* ReordableGridView-Swift */ = {
+			isa = PBXGroup;
+			children = (
+				B2C47F661A1C9078002FDA24 /* AppDelegate.swift */,
+				B2C47F681A1C9078002FDA24 /* ViewController.swift */,
+				B2C47F6A1A1C9078002FDA24 /* Main.storyboard */,
+				B2C47F6D1A1C9078002FDA24 /* Images.xcassets */,
+				B2C47F6F1A1C9078002FDA24 /* LaunchScreen.xib */,
+				B2C47F641A1C9078002FDA24 /* Supporting Files */,
+			);
+			path = "ReordableGridView-Swift";
+			sourceTree = "<group>";
+		};
+		B2C47F641A1C9078002FDA24 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				B2C47F651A1C9078002FDA24 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B2C47F791A1C9078002FDA24 /* ReordableGridView-SwiftTests */ = {
+			isa = PBXGroup;
+			children = (
+				B2C47F7C1A1C9078002FDA24 /* ReordableGridView_SwiftTests.swift */,
+				B2C47F7A1A1C9078002FDA24 /* Supporting Files */,
+			);
+			path = "ReordableGridView-SwiftTests";
+			sourceTree = "<group>";
+		};
+		B2C47F7A1A1C9078002FDA24 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				B2C47F7B1A1C9078002FDA24 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		B2C47F601A1C9078002FDA24 /* ReordableGridView-Swift */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B2C47F801A1C9078002FDA24 /* Build configuration list for PBXNativeTarget "ReordableGridView-Swift" */;
+			buildPhases = (
+				B2C47F5D1A1C9078002FDA24 /* Sources */,
+				B2C47F5E1A1C9078002FDA24 /* Frameworks */,
+				B2C47F5F1A1C9078002FDA24 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "ReordableGridView-Swift";
+			productName = "ReordableGridView-Swift";
+			productReference = B2C47F611A1C9078002FDA24 /* ReordableGridView-Swift.app */;
+			productType = "com.apple.product-type.application";
+		};
+		B2C47F751A1C9078002FDA24 /* ReordableGridView-SwiftTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B2C47F831A1C9078002FDA24 /* Build configuration list for PBXNativeTarget "ReordableGridView-SwiftTests" */;
+			buildPhases = (
+				B2C47F721A1C9078002FDA24 /* Sources */,
+				B2C47F731A1C9078002FDA24 /* Frameworks */,
+				B2C47F741A1C9078002FDA24 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B2C47F781A1C9078002FDA24 /* PBXTargetDependency */,
+			);
+			name = "ReordableGridView-SwiftTests";
+			productName = "ReordableGridView-SwiftTests";
+			productReference = B2C47F761A1C9078002FDA24 /* ReordableGridView-SwiftTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B2C47F591A1C9078002FDA24 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+				ORGANIZATIONNAME = "Cem Olcay";
+				TargetAttributes = {
+					B2C47F601A1C9078002FDA24 = {
+						CreatedOnToolsVersion = 6.1;
+					};
+					B2C47F751A1C9078002FDA24 = {
+						CreatedOnToolsVersion = 6.1;
+						TestTargetID = B2C47F601A1C9078002FDA24;
+					};
+				};
+			};
+			buildConfigurationList = B2C47F5C1A1C9078002FDA24 /* Build configuration list for PBXProject "ReordableGridView-Swift" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = B2C47F581A1C9078002FDA24;
+			productRefGroup = B2C47F621A1C9078002FDA24 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B2C47F601A1C9078002FDA24 /* ReordableGridView-Swift */,
+				B2C47F751A1C9078002FDA24 /* ReordableGridView-SwiftTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B2C47F5F1A1C9078002FDA24 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B2C47F6C1A1C9078002FDA24 /* Main.storyboard in Resources */,
+				B2C47F711A1C9078002FDA24 /* LaunchScreen.xib in Resources */,
+				B2C47F6E1A1C9078002FDA24 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B2C47F741A1C9078002FDA24 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B2C47F5D1A1C9078002FDA24 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B2C47F691A1C9078002FDA24 /* ViewController.swift in Sources */,
+				B2C47F671A1C9078002FDA24 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B2C47F721A1C9078002FDA24 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B2C47F7D1A1C9078002FDA24 /* ReordableGridView_SwiftTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B2C47F781A1C9078002FDA24 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B2C47F601A1C9078002FDA24 /* ReordableGridView-Swift */;
+			targetProxy = B2C47F771A1C9078002FDA24 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		B2C47F6A1A1C9078002FDA24 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B2C47F6B1A1C9078002FDA24 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		B2C47F6F1A1C9078002FDA24 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B2C47F701A1C9078002FDA24 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		B2C47F7E1A1C9078002FDA24 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		B2C47F7F1A1C9078002FDA24 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		B2C47F811A1C9078002FDA24 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "ReordableGridView-Swift/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		B2C47F821A1C9078002FDA24 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "ReordableGridView-Swift/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		B2C47F841A1C9078002FDA24 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "ReordableGridView-SwiftTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ReordableGridView-Swift.app/ReordableGridView-Swift";
+			};
+			name = Debug;
+		};
+		B2C47F851A1C9078002FDA24 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "ReordableGridView-SwiftTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ReordableGridView-Swift.app/ReordableGridView-Swift";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B2C47F5C1A1C9078002FDA24 /* Build configuration list for PBXProject "ReordableGridView-Swift" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B2C47F7E1A1C9078002FDA24 /* Debug */,
+				B2C47F7F1A1C9078002FDA24 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B2C47F801A1C9078002FDA24 /* Build configuration list for PBXNativeTarget "ReordableGridView-Swift" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B2C47F811A1C9078002FDA24 /* Debug */,
+				B2C47F821A1C9078002FDA24 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		B2C47F831A1C9078002FDA24 /* Build configuration list for PBXNativeTarget "ReordableGridView-SwiftTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B2C47F841A1C9078002FDA24 /* Debug */,
+				B2C47F851A1C9078002FDA24 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = B2C47F591A1C9078002FDA24 /* Project object */;
+}
