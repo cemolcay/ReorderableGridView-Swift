@@ -151,7 +151,9 @@ class ReordableView: UIView, UIGestureRecognizerDelegate {
     
     var delegate: Reordable! = nil
     var pan: UIPanGestureRecognizer?
+    
     var originalPosition: CGPoint?
+    var lastKnownPosition: GridPosition?
     
     let animationDuration: NSTimeInterval = 0.2
     let reorderModeScale: CGFloat = 1.1
@@ -202,7 +204,6 @@ class ReordableView: UIView, UIGestureRecognizerDelegate {
             self.setScale(self.reorderModeScale, y: self.reorderModeScale, z: self.reorderModeScale)
         })
     }
-    
     
     func endReorderMode () {
         removePan()
@@ -340,22 +341,29 @@ class ReordableGridView: UIScrollView, Reordable {
         view.center = location
         
         let col : Int = min(Int(location.x) / Int(itemWidth! + horizontalPadding!), colsInRow!-1)
+        let rowCount : Int = reordableViews.count/colsInRow!
         
         var gridPos = GridPosition (x: col, y: 0)
         var targetY = location.y > view.originalPosition?.y ?view.botttomWithOffset(verticalPadding!):view.topWithOffset(verticalPadding!)
         var targetPosition = CGPoint(x: location.x, y: targetY)
-        for (var row = 0; row < reordableViews.count/colsInRow!; row++) {
+        for (var row = 0; row < rowCount; row++) {
             gridPos.y = row
             var topView = itemAtGridPosition(gridPos)
 
             if CGRectContainsPoint(topView.frame, targetPosition) {
                 println("found intersection item at \(col), \(row)")
+                view.lastKnownPosition = gridPos
+                
+                for (var below = row; below < rowCount; below++) {
+                    let belowView = itemAtGridPosition(GridPosition (x: col, y: below))
+                    belowView.setY(belowView.y + view.h + verticalPadding!)
+                }
             }
         }
     }
     
     func didReordererdView (view: ReordableView, pan: UIPanGestureRecognizer) {
-        
+
     }
     
     
