@@ -31,17 +31,24 @@ extension UIFont {
     }
     
     class func HelveticaNeue (type: FontType, size: CGFloat) -> UIFont {
-        return UIFont (name: "HelveticaNeue-" + type.rawValue, size: size)!
+        return Font(.HelveticaNeue, type: type, size: size)
     }
 }
 
 class ViewController: UIViewController {
 
+    // MARK: Properties
+    
     var borderColor: UIColor?
     var bgColor: UIColor?
     var bottomColor: UIColor?
     
+    var gridView : ReordableGridView?
     var itemCount: Int = 0
+    
+    
+    
+    // MARK: Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,40 +57,41 @@ class ViewController: UIViewController {
         bgColor = RGBColor(242, g: 242, b: 242)
         bottomColor = RGBColor(65, g: 65, b: 65)
         
-        var grid = ReordableGridView(frame: self.view.frame, itemWidth: 150)
-        grid.backgroundColor = bgColor
+        gridView = ReordableGridView(frame: self.view.frame, itemWidth: 150)
+        gridView!.backgroundColor = bgColor
         
-        self.view.addSubview(grid)
+        self.view.addSubview(gridView!)
         
-        for _ in 0...10 {
-            grid.addReordableView(itemView())
+        for _ in 0...40 {
+            gridView!.addReordableView(itemView())
         }
     }
     
-    
     func itemView () -> ReordableView {
         var w : CGFloat = 150
-        var h : CGFloat = 60 + CGFloat(arc4random()%100)
+        var h : CGFloat = 100 + CGFloat(arc4random()%100)
         
         let view = ReordableView (frame: CGRect(x: 0, y: 0, width: w, height: h))
+        view.tag = itemCount++
         view.layer.borderColor = borderColor?.CGColor
+        view.layer.backgroundColor = UIColor.whiteColor().CGColor
         view.layer.borderWidth = 1
         view.layer.masksToBounds = true
         
         let topView = UIView(frame: CGRect(x: 0, y: 0, width: view.w, height: 50))
-        topView.backgroundColor = bgColor
         view.addSubview(topView)
         
-        let itemLabel = UILabel (frame: CGRect(x: 0, y: 0, width: topView.w/2, height: topView.w/2))
-        itemLabel.font = UIFont.HelveticaNeue(.UltraLight, size: 20)
+        let itemLabel = UILabel (frame: CGRect(x: 0, y: 0, width: topView.h/2, height: topView.h/2))
+        itemLabel.center = topView.center
+        itemLabel.font = UIFont.HelveticaNeue(.Thin, size: 20)
         itemLabel.textAlignment = NSTextAlignment.Center
         itemLabel.textColor = bottomColor?
-        itemLabel.text = "\(itemCount++)"
+        itemLabel.text = "\(view.tag)"
         itemLabel.layer.borderColor = borderColor?.CGColor
         itemLabel.layer.borderWidth = 1
         itemLabel.layer.cornerRadius = itemLabel.w/2
-        itemLabel.layer.backgroundColor = UIColor.whiteColor().CGColor
         itemLabel.layer.masksToBounds = true
+        topView.addSubview(itemLabel)
         
         let sepLayer = CALayer ()
         sepLayer.frame = CGRect (x: 0, y: topView.bottom, width: topView.w, height: 1)
@@ -101,15 +109,30 @@ class ViewController: UIViewController {
         return view
     }
 
+
+    
+    // MARK Interface Rotation
+
+    override func didRotateFromInterfaceOrientation(fromInterfaceOrientation: UIInterfaceOrientation) {
+        let w = UIScreen.mainScreen().bounds.size.width
+        let h = UIScreen.mainScreen().bounds.size.height
+        
+        if (fromInterfaceOrientation.isPortrait) {
+            gridView?.setW(h, h: w)
+            gridView?.invalidateLayout()
+        } else {
+            gridView?.setW(w, h: h)
+            gridView?.invalidateLayout()
+        }
+    }
+    
     
     
     // MARK: Utils
     
     func randomColor () -> UIColor {
         var randomRed:CGFloat = CGFloat(drand48())
-        
         var randomGreen:CGFloat = CGFloat(drand48())
-        
         var randomBlue:CGFloat = CGFloat(drand48())
         
         return UIColor(red: randomRed, green: randomGreen, blue: randomBlue, alpha: 1.0)
