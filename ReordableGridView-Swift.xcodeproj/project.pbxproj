@@ -13,6 +13,7 @@
 		B2C47F6E1A1C9078002FDA24 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B2C47F6D1A1C9078002FDA24 /* Images.xcassets */; };
 		B2C47F711A1C9078002FDA24 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = B2C47F6F1A1C9078002FDA24 /* LaunchScreen.xib */; };
 		B2C47F7D1A1C9078002FDA24 /* ReordableGridView_SwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C47F7C1A1C9078002FDA24 /* ReordableGridView_SwiftTests.swift */; };
+		B2C47F871A1C909B002FDA24 /* ReordableGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C47F861A1C909B002FDA24 /* ReordableGridView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +37,7 @@
 		B2C47F761A1C9078002FDA24 /* ReordableGridView-SwiftTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ReordableGridView-SwiftTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2C47F7B1A1C9078002FDA24 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B2C47F7C1A1C9078002FDA24 /* ReordableGridView_SwiftTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReordableGridView_SwiftTests.swift; sourceTree = "<group>"; };
+		B2C47F861A1C909B002FDA24 /* ReordableGridView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReordableGridView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +85,7 @@
 				B2C47F6D1A1C9078002FDA24 /* Images.xcassets */,
 				B2C47F6F1A1C9078002FDA24 /* LaunchScreen.xib */,
 				B2C47F641A1C9078002FDA24 /* Supporting Files */,
+				B2C47F861A1C909B002FDA24 /* ReordableGridView.swift */,
 			);
 			path = "ReordableGridView-Swift";
 			sourceTree = "<group>";
@@ -213,6 +216,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B2C47F691A1C9078002FDA24 /* ViewController.swift in Sources */,
+				B2C47F871A1C909B002FDA24 /* ReordableGridView.swift in Sources */,
 				B2C47F671A1C9078002FDA24 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -339,6 +343,7 @@
 				INFOPLIST_FILE = "ReordableGridView-Swift/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -349,6 +354,7 @@
 				INFOPLIST_FILE = "ReordableGridView-Swift/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -405,6 +411,7 @@
 				B2C47F821A1C9078002FDA24 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B2C47F831A1C9078002FDA24 /* Build configuration list for PBXNativeTarget "ReordableGridView-SwiftTests" */ = {
 			isa = XCConfigurationList;
@@ -413,6 +420,7 @@
 				B2C47F851A1C9078002FDA24 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
