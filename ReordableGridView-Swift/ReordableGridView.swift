@@ -103,11 +103,7 @@ extension UIView {
     
     
     func setScale (x: CGFloat, y: CGFloat, z: CGFloat) {
-        var transform = CATransform3DIdentity
-        transform.m34 = 1.0 / -1000.0
-        transform = CATransform3DScale(transform, x, y, z)
-        
-        self.layer.transform = transform
+        self.transform = CGAffineTransformMakeScale(x, y)
     }
     
     convenience init (x: CGFloat, y: CGFloat, w: CGFloat, h: CGFloat) {
@@ -130,6 +126,7 @@ func == (lhs: GridPosition, rhs: GridPosition) -> Bool {
 struct GridPosition: Equatable {
     var x: Int?
     var y: Int?
+    
     
     func col () -> Int {
         return x!
@@ -204,7 +201,12 @@ class ReordableView: UIView, UIGestureRecognizerDelegate {
     }
     
     
+    
     // MARK: Lifecycle
+    
+    convenience init (x: CGFloat, y: CGFloat, w: CGFloat, h: CGFloat) {
+        self.init (frame: CGRect (x: x, y: y, width: w, height: h))
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -236,16 +238,17 @@ class ReordableView: UIView, UIGestureRecognizerDelegate {
         addPan()
         
         superview?.bringSubviewToFront(self)
+
         UIView.animateWithDuration(animationDuration, animations: { () -> Void in
             self.alpha = self.reorderModeAlpha
-            //self.setScale(self.reorderModeScale, y: self.reorderModeScale, z: self.reorderModeScale)
+            self.setScale(self.reorderModeScale, y: self.reorderModeScale, z: self.reorderModeScale)
         })
     }
     
     func endReorderMode () {
         UIView.animateWithDuration(animationDuration, animations: { () -> Void in
             self.alpha = 1
-            //self.setScale(1, y: 1, z: 1)
+            self.setScale(1, y: 1, z: 1)
         }) { finished -> Void in
             self.removePan()
         }
@@ -335,7 +338,6 @@ class ReordableGridView: UIScrollView, Reordable {
     
     var reordableViews : [ReordableView] = []
     
-    var reorderingTempPosition: GridPosition?
     
     
     // MARK: Lifecycle
@@ -371,6 +373,7 @@ class ReordableGridView: UIScrollView, Reordable {
     func invalidateLayout () {
         colsInRow = Int (self.w / itemWidth!)
         horizontalPadding = (self.w - (CGFloat(colsInRow!) * itemWidth!)) / (CGFloat(colsInRow!) - 1)
+        contentSize.height = 0
         
         currentCol = 0
         currentRow = 0
@@ -395,9 +398,12 @@ class ReordableGridView: UIScrollView, Reordable {
         let pos = gridPositionToViewPosition(gridPosition)
         view.setPosition(pos)
         
-        setContentHeight(view.botttomWithOffset(verticalPadding!))
+
+        let height = view.botttomWithOffset(verticalPadding!)
+        if height > contentSize.height {
+            setContentHeight(height)
+        }
     }
-    
     
     func insertViewAtPosition (view: ReordableView, position: GridPosition) {
         if (view.gridPosition == position) {
@@ -448,7 +454,7 @@ class ReordableGridView: UIScrollView, Reordable {
     func addReordableView (view: ReordableView) {
         super.addSubview(view)
         reordableViews.append(view)
-        placeView(view)
+        invalidateLayout()
     }
     
     
@@ -456,9 +462,12 @@ class ReordableGridView: UIScrollView, Reordable {
     // MARK: Removing
     
     func removeReordableViewAtGridPosition (gridPosition: GridPosition) {
-        var view = viewAtGridPosition(gridPosition)
-        reordableViews.removeAtIndex(gridPosition.arrayIndex(colsInRow!))
-        currentCol--
+        if let view = viewAtGridPosition(gridPosition) {
+            reordableViews.removeAtIndex(gridPosition.arrayIndex(colsInRow!))
+            
+            view.removeFromSuperview()
+            invalidateLayout()
+        }
     }
     
     
@@ -466,7 +475,7 @@ class ReordableGridView: UIScrollView, Reordable {
     // MARK: Reordable
     
     func didReorderStartedForView (view: ReordableView) {
-        reorderingTempPosition = view.gridPosition
+        
     }
     
     func didReorderingView (view: ReordableView, pan: UIPanGestureRecognizer) {

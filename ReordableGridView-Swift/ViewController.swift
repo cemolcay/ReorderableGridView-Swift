@@ -57,21 +57,36 @@ class ViewController: UIViewController {
         bgColor = RGBColor(242, g: 242, b: 242)
         bottomColor = RGBColor(65, g: 65, b: 65)
         
-        gridView = ReordableGridView(frame: self.view.frame, itemWidth: 200)
-
+        self.navigationItem.title = "Reordable Grid View Demo"
         self.view.backgroundColor = bgColor
+        
+        setupGridView()
+    }
+    
+    
+    
+    // MARK: Grid View
+    
+    func setupGridView () {
+        let add = UIBarButtonItem (barButtonSystemItem: UIBarButtonSystemItem.Add, target: self, action: "addPressed:")
+        let remove = UIBarButtonItem (barButtonSystemItem: UIBarButtonSystemItem.Trash, target: self, action: "removePressed:")
+        
+        self.navigationItem.leftBarButtonItem = add
+        self.navigationItem.rightBarButtonItem = remove
+        
+        gridView = ReordableGridView(frame: self.view.frame, itemWidth: 200, verticalPadding: 20)
         self.view.addSubview(gridView!)
         
-        for _ in 0..<40 {
+        for _ in 0..<20 {
             gridView!.addReordableView(itemView())
         }
     }
     
     func itemView () -> ReordableView {
         var w : CGFloat = 200
-        var h : CGFloat = 200//100 + CGFloat(arc4random()%100)
+        var h : CGFloat = 100 + CGFloat(arc4random()%100)
         
-        let view = ReordableView (frame: CGRect(x: 0, y: 0, width: w, height: h))
+        let view = ReordableView (x: 0, y: 0, w: w, h: h)
         view.tag = itemCount++
         view.layer.borderColor = borderColor?.CGColor
         view.layer.backgroundColor = UIColor.whiteColor().CGColor
@@ -79,10 +94,10 @@ class ViewController: UIViewController {
         view.layer.cornerRadius = 5
         view.layer.masksToBounds = true
         
-        let topView = UIView(frame: CGRect(x: 0, y: 0, width: view.w, height: 50))
+        let topView = UIView(x: 0, y: 0, w: view.w, h: 50)
         view.addSubview(topView)
         
-        let itemLabel = UILabel (frame: CGRect(x: 0, y: 0, width: topView.h/2, height: topView.h/2))
+        let itemLabel = UILabel (x: 0, y: 0, w: topView.h/2, h: topView.h/2)
         itemLabel.center = topView.center
         itemLabel.font = UIFont.HelveticaNeue(.Thin, size: 20)
         itemLabel.textAlignment = NSTextAlignment.Center
@@ -109,6 +124,18 @@ class ViewController: UIViewController {
 
 
     
+    // MARK: Add/Remove
+    
+    func addPressed (sender: AnyObject) {
+        gridView?.addReordableView(itemView())
+    }
+    
+    func removePressed (sender: AnyObject) {
+        gridView?.removeReordableViewAtGridPosition(GridPosition (x: 0, y: 0))
+    }
+    
+    
+    
     // MARK Interface Rotation
 
     override func willRotateToInterfaceOrientation(toInterfaceOrientation: UIInterfaceOrientation, duration: NSTimeInterval) {
@@ -118,6 +145,7 @@ class ViewController: UIViewController {
         gridView?.setW(h, h: w)
         gridView?.invalidateLayout()
     }
+    
     
     
     // MARK: Utils
