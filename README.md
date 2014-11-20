@@ -38,7 +38,8 @@ or  remove them
 
 > **Design Tip**  
 > View itself don't have any margin padding.  
-> It uses all frame width to calculate horizontal padding in a row.   
+> It uses all frame width to calculate how many `ReorderableView`s can fit and
+> what should be their horizontal padding in a row.
 > Padding between columns (vertical padding) can be set in init method,    
 > which is 10 by default.  
 > You can have a container view and using something like   
