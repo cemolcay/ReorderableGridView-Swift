@@ -24,8 +24,10 @@ copy & paste the `ReordableGridView.swift` into your project. <br>
 Grid view ready !
 
 now you can add it `ReordableView` instances 
-
-      gridView?.addReordableView(itemView())
+      
+      let itemView = ReordableView (x: 0, y: 0, w: 200, h: 250)
+      ...
+      gridView?.addReordableView(itemView)
       
 
 or  remove them
