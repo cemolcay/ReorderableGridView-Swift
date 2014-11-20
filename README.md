@@ -38,6 +38,5 @@ Optional Values
 ---------------
 
     var reordable : Bool = true
-    var draggable : Bool = true
   
 set them if you want your grid editable or not
