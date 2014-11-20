@@ -352,7 +352,9 @@ class ReordableGridView: UIScrollView, Reordable {
         currentCol = 0
         currentRow = 0
 
-        if reordableViews.isEmpty { return }
+        if reordableViews.isEmpty {
+            return
+        }
         
         for i in 0...reordableViews.count-1 {
             placeView(reordableViews[i])

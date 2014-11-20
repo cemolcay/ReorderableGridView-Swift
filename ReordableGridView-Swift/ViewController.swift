@@ -45,10 +45,7 @@ class ViewController: UIViewController {
     
     var gridView : ReordableGridView?
     var itemCount: Int = 0
-    
-    let w = UIScreen.mainScreen().bounds.size.width
-    let h = UIScreen.mainScreen().bounds.size.height
-    
+
     
     
     // MARK: Lifecycle
@@ -114,13 +111,11 @@ class ViewController: UIViewController {
     // MARK Interface Rotation
 
     override func willRotateToInterfaceOrientation(toInterfaceOrientation: UIInterfaceOrientation, duration: NSTimeInterval) {
-        if (toInterfaceOrientation.isPortrait) {
-            gridView?.setW(w, h: h)
-            gridView?.invalidateLayout()
-        } else {
-            gridView?.setW(h, h: w)
-            gridView?.invalidateLayout()
-        }
+        let w = UIScreen.mainScreen().bounds.size.width
+        let h = UIScreen.mainScreen().bounds.size.height
+        
+        gridView?.setW(h, h: w)
+        gridView?.invalidateLayout()
     }
     
     
