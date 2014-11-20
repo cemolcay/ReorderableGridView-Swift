@@ -52,7 +52,9 @@ extension UIView {
     }
     
     func setY (y: CGFloat) {
-        self.frame = CGRect (x: self.x, y: y, width: self.w, height: self.h)
+        UIView.animateWithDuration(0.2, animations: { () -> Void in
+            self.frame = CGRect (x: self.x, y: y, width: self.w, height: self.h)
+        })
     }
     
     func setX (x: CGFloat, y: CGFloat) {
@@ -77,7 +79,9 @@ extension UIView {
     }
     
     func setPosition (position: CGPoint) {
-        self.frame = CGRect (x: position.x, y: position.y, width: self.w, height: self.h)
+        UIView.animateWithDuration(0.2, animations: { () -> Void in
+            self.frame = CGRect (x: position.x, y: position.y, width: self.w, height: self.h)
+        })
     }
     
     
@@ -119,10 +123,13 @@ protocol Reordable {
 }
 
 
-struct GridPosition {
+func == (lhs: GridPosition, rhs: GridPosition) -> Bool {
+    return (lhs.x == rhs.x && lhs.y == rhs.y)
+}
+
+struct GridPosition: Equatable {
     var x: Int?
     var y: Int?
-    
     
     func col () -> Int {
         return x!
@@ -206,11 +213,14 @@ class ReordableView: UIView, UIGestureRecognizerDelegate {
         doubleTap.numberOfTapsRequired = 1
         doubleTap.numberOfTouchesRequired = 1
         doubleTap.delegate = self
+        
         self.addGestureRecognizer(doubleTap)
+        
         
         var longPress = UILongPressGestureRecognizer (target: self, action: "longPressed:")
         longPress.numberOfTouchesRequired = 1
         longPress.delegate = self
+        
         self.addGestureRecognizer(longPress)
     }
 
@@ -228,17 +238,17 @@ class ReordableView: UIView, UIGestureRecognizerDelegate {
         superview?.bringSubviewToFront(self)
         UIView.animateWithDuration(animationDuration, animations: { () -> Void in
             self.alpha = self.reorderModeAlpha
-            self.setScale(self.reorderModeScale, y: self.reorderModeScale, z: self.reorderModeScale)
+            //self.setScale(self.reorderModeScale, y: self.reorderModeScale, z: self.reorderModeScale)
         })
     }
     
     func endReorderMode () {
-        removePan()
-        
         UIView.animateWithDuration(animationDuration, animations: { () -> Void in
             self.alpha = 1
-            self.setScale(1, y: 1, z: 1)
-        })
+            //self.setScale(1, y: 1, z: 1)
+        }) { finished -> Void in
+            self.removePan()
+        }
     }
     
     
@@ -256,18 +266,21 @@ class ReordableView: UIView, UIGestureRecognizerDelegate {
     
     
     func longPressed (gesture: UITapGestureRecognizer) {
-        isReordering = true
+        if isReordering { return } else { isReordering = true }
         delegate?.didReorderStartedForView(self)
     }
     
     func doubleTapped (gesture: UITapGestureRecognizer) {
-        isReordering = true
-        delegate?.didReorderStartedForView(self)
+        isReordering = !isReordering
+        
+        if isReordering {
+            delegate?.didReorderStartedForView(self)
+        }
     }
     
     func pan (gesture: UIPanGestureRecognizer) {
         switch gesture.state {
-        case .Cancelled, .Failed, .Ended:
+        case .Ended:
             isReordering = false
             delegate.didReordererdView(self, pan: pan!)
             
@@ -322,6 +335,7 @@ class ReordableGridView: UIScrollView, Reordable {
     
     var reordableViews : [ReordableView] = []
     
+    var reorderingTempPosition: GridPosition?
     
     
     // MARK: Lifecycle
@@ -379,19 +393,25 @@ class ReordableGridView: UIScrollView, Reordable {
         view.gridPosition = gridPosition
         
         let pos = gridPositionToViewPosition(gridPosition)
-        view.setX(pos.x, y: pos.y)
+        view.setPosition(pos)
         
         setContentHeight(view.botttomWithOffset(verticalPadding!))
     }
     
     
+    func insertViewAtPosition (view: ReordableView, position: GridPosition) {
+        if (view.gridPosition == position) {
+            return
+        }
+    
+        reordableViews.removeAtIndex(view.gridPosition!.arrayIndex(colsInRow!))
+        reordableViews.insert(view, atIndex: position.arrayIndex(colsInRow!))
+        invalidateLayout()
+    }
+    
+    
     
     // MARK: Grid
-    
-    func viewPositionToGridPosition (position: CGPoint) -> GridPosition {
-        // TODO: Get this function worked!
-        return GridPosition(x: 0, y: 0)
-    }
     
     func gridPositionToViewPosition (gridPosition: GridPosition) -> CGPoint {
         var x : CGFloat = (CGFloat(gridPosition.x! - 1) * (itemWidth! + verticalPadding!)) + itemWidth!
@@ -403,7 +423,6 @@ class ReordableGridView: UIScrollView, Reordable {
         
         return CGPoint (x: x, y: y)
     }
-    
     
     func viewAtGridPosition (gridPosition: GridPosition) -> ReordableView? {
         let index = gridPosition.arrayIndex(colsInRow!)
@@ -447,7 +466,7 @@ class ReordableGridView: UIScrollView, Reordable {
     // MARK: Reordable
     
     func didReorderStartedForView (view: ReordableView) {
-
+        reorderingTempPosition = view.gridPosition
     }
     
     func didReorderingView (view: ReordableView, pan: UIPanGestureRecognizer) {
@@ -462,23 +481,20 @@ class ReordableGridView: UIScrollView, Reordable {
         for (var row = 0; row < reordableViews.count/colsInRow!; row++) {
             gridPos.y = row
             
-            if let topView = viewAtGridPosition(gridPos) {
-                if topView == view {
+            if let otherView = viewAtGridPosition(gridPos) {
+                if otherView == view {
                     continue
                 }
                 
-                if CGRectContainsPoint(topView.frame, location) {
+                if CGRectContainsPoint(otherView.frame, location) {
                     //println("im at \(col), \(row), im " + view.gridPosition!.string())
-                    
-                    
-                    
-                    view.gridPosition = gridPos
+                    insertViewAtPosition(view, position: gridPos)
                 }
             }
         }
     }
     
     func didReordererdView (view: ReordableView, pan: UIPanGestureRecognizer) {
-        view.setPosition(gridPositionToViewPosition(view.gridPosition!))
+        invalidateLayout()
     }
 }

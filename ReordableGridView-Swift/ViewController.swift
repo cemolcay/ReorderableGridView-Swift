@@ -62,14 +62,14 @@ class ViewController: UIViewController {
         self.view.backgroundColor = bgColor
         self.view.addSubview(gridView!)
         
-        for _ in 0...40 {
+        for _ in 0..<40 {
             gridView!.addReordableView(itemView())
         }
     }
     
     func itemView () -> ReordableView {
         var w : CGFloat = 200
-        var h : CGFloat = 100 + CGFloat(arc4random()%100)
+        var h : CGFloat = 200//100 + CGFloat(arc4random()%100)
         
         let view = ReordableView (frame: CGRect(x: 0, y: 0, width: w, height: h))
         view.tag = itemCount++
