@@ -57,7 +57,7 @@ class ViewController: UIViewController {
         bgColor = RGBColor(242, g: 242, b: 242)
         bottomColor = RGBColor(65, g: 65, b: 65)
         
-        gridView = ReordableGridView(frame: self.view.frame, itemWidth: 150)
+        gridView = ReordableGridView(frame: self.view.frame, itemWidth: 200)
         gridView!.backgroundColor = bgColor
         
         self.view.addSubview(gridView!)
@@ -68,7 +68,7 @@ class ViewController: UIViewController {
     }
     
     func itemView () -> ReordableView {
-        var w : CGFloat = 150
+        var w : CGFloat = 200
         var h : CGFloat = 100 + CGFloat(arc4random()%100)
         
         let view = ReordableView (frame: CGRect(x: 0, y: 0, width: w, height: h))
@@ -87,9 +87,6 @@ class ViewController: UIViewController {
         itemLabel.textAlignment = NSTextAlignment.Center
         itemLabel.textColor = bottomColor?
         itemLabel.text = "\(view.tag)"
-        itemLabel.layer.borderColor = borderColor?.CGColor
-        itemLabel.layer.borderWidth = 1
-        itemLabel.layer.cornerRadius = itemLabel.w/2
         itemLabel.layer.masksToBounds = true
         topView.addSubview(itemLabel)
         

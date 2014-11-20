@@ -81,11 +81,8 @@
 			children = (
 				B2C47F661A1C9078002FDA24 /* AppDelegate.swift */,
 				B2C47F681A1C9078002FDA24 /* ViewController.swift */,
-				B2C47F6A1A1C9078002FDA24 /* Main.storyboard */,
-				B2C47F6D1A1C9078002FDA24 /* Images.xcassets */,
-				B2C47F6F1A1C9078002FDA24 /* LaunchScreen.xib */,
-				B2C47F641A1C9078002FDA24 /* Supporting Files */,
 				B2C47F861A1C909B002FDA24 /* ReordableGridView.swift */,
+				B2C47F641A1C9078002FDA24 /* Supporting Files */,
 			);
 			path = "ReordableGridView-Swift";
 			sourceTree = "<group>";
@@ -93,6 +90,9 @@
 		B2C47F641A1C9078002FDA24 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B2C47F6A1A1C9078002FDA24 /* Main.storyboard */,
+				B2C47F6D1A1C9078002FDA24 /* Images.xcassets */,
+				B2C47F6F1A1C9078002FDA24 /* LaunchScreen.xib */,
 				B2C47F651A1C9078002FDA24 /* Info.plist */,
 			);
 			name = "Supporting Files";
