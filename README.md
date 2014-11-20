@@ -42,9 +42,9 @@ or  remove them
 > what should be their horizontal padding in a row.   
 > Padding between columns (vertical padding) can be set in init method,    
 > which is 10 by default.  
-> You can have a container view and using something like   
+> You can have a container view and use something like   
 > `CGRectInset (containerView.frame, marginX, marginY)`  
-> when init grid for margin
+> when init grid with margin
 
 
 
