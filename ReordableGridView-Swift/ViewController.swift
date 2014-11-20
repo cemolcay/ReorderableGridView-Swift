@@ -83,7 +83,7 @@ class ViewController: UIViewController {
     }
     
     func itemView () -> ReordableView {
-        var w : CGFloat = 160
+        var w : CGFloat = 180
         var h : CGFloat = 100 + CGFloat(arc4random()%100)
         
         let view = ReordableView (x: 0, y: 0, w: w, h: h)
