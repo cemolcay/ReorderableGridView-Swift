@@ -33,6 +33,17 @@ now you can add it `ReordableView` instances
 or  remove them
     gridView?.removeReordableViewAtGridPosition(GridPosition (x: 0, y: 0))
 
+> Design Tip
+> ----------
+> View itself don't have any margin padding.  
+> It uses all frame width to calculate horizontal padding in a row. 
+> Padding between columns (vertical padding) can be set in init method,  
+> which is 10 by default.  
+> You can have a container view and using something like   
+> `CGRectInset (containerView.frame, marginX, marginY)`  
+> to give a margin
+
+
 
 Optional Values
 ---------------
