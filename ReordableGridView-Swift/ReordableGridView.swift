@@ -162,6 +162,15 @@ struct GridPosition {
     func right () -> GridPosition {
         return GridPosition (x: x!+1, y: y!)
     }
+    
+    
+    func string () -> String {
+        return "\(x!), \(y!)"
+    }
+    
+    func detailedString () -> String {
+        return "x: \(x!), y: \(y!)"
+    }
 }
 
 
@@ -364,8 +373,10 @@ class ReordableGridView: UIScrollView, Reordable {
     func placeView (view: ReordableView) {
         let y = currentRow
         let x = currentCol++
+        
         let gridPosition = GridPosition (x: x, y: y)
         view.delegate = self
+        view.gridPosition = gridPosition
         
         let pos = gridPositionToViewPosition(gridPosition)
         view.setX(pos.x, y: pos.y)
@@ -378,7 +389,7 @@ class ReordableGridView: UIScrollView, Reordable {
     // MARK: Grid
     
     func viewPositionToGridPosition (position: CGPoint) -> GridPosition {
-        
+        // TODO: Get this function worked!
         return GridPosition(x: 0, y: 0)
     }
     
@@ -406,7 +417,7 @@ class ReordableGridView: UIScrollView, Reordable {
     func heightOfCol (col: Int) -> CGFloat {
         var height: CGFloat = 0
         
-        
+        // TODO: fix this func
         
         return height
     }
@@ -447,9 +458,27 @@ class ReordableGridView: UIScrollView, Reordable {
         let rowCount : Int = reordableViews.count/colsInRow!
         
         
+        var gridPos = GridPosition (x: col, y: 0)
+        for (var row = 0; row < reordableViews.count/colsInRow!; row++) {
+            gridPos.y = row
+            
+            if let topView = viewAtGridPosition(gridPos) {
+                if topView == view {
+                    continue
+                }
+                
+                if CGRectContainsPoint(topView.frame, location) {
+                    //println("im at \(col), \(row), im " + view.gridPosition!.string())
+                    
+                    
+                    
+                    view.gridPosition = gridPos
+                }
+            }
+        }
     }
     
     func didReordererdView (view: ReordableView, pan: UIPanGestureRecognizer) {
-        
+        view.setPosition(gridPositionToViewPosition(view.gridPosition!))
     }
 }

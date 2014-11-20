@@ -76,6 +76,7 @@ class ViewController: UIViewController {
         view.layer.borderColor = borderColor?.CGColor
         view.layer.backgroundColor = UIColor.whiteColor().CGColor
         view.layer.borderWidth = 1
+        view.layer.cornerRadius = 5
         view.layer.masksToBounds = true
         
         let topView = UIView(frame: CGRect(x: 0, y: 0, width: view.w, height: 50))
