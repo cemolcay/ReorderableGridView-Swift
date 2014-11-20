@@ -105,6 +105,10 @@ extension UIView {
         
         self.layer.transform = transform
     }
+    
+    convenience init (x: CGFloat, y: CGFloat, w: CGFloat, h: CGFloat) {
+        self.init (frame: CGRect (x: x, y: y, width: w, height: h))
+    }
 }
 
 
@@ -119,6 +123,7 @@ struct GridPosition {
     var x: Int?
     var y: Int?
     
+    
     func col () -> Int {
         return x!
     }
@@ -127,8 +132,10 @@ struct GridPosition {
         return y!
     }
     
+    
     func arrayIndex (colsInRow: Int) -> Int {
-        return (col()-1)*colsInRow + row()
+        let index = row()*colsInRow + col()
+        return index
     }
     
     
@@ -227,7 +234,7 @@ class ReordableView: UIView, UIGestureRecognizerDelegate {
     
     
     
-    // MARK: Gesture Recognizers
+    // MARK: Gestures
     
     func addPan () {
         pan = UIPanGestureRecognizer (target: self, action: "pan:")
@@ -314,7 +321,7 @@ class ReordableGridView: UIScrollView, Reordable {
         super.init(frame: frame)
         self.itemWidth = itemWidth
         self.verticalPadding = verticalPadding
-        
+    
         invalidateLayout()
     }
     
@@ -345,17 +352,11 @@ class ReordableGridView: UIScrollView, Reordable {
         currentCol = 0
         currentRow = 0
 
-        for i in 0...colsInRow! {
-            invalidateCol(i)
+        if reordableViews.isEmpty { return }
+        
+        for i in 0...reordableViews.count-1 {
+            placeView(reordableViews[i])
         }
-    }
-    
-    func invalidateCol (col: Int) {
-        var row = 0
-        var gridPos = GridPosition (x: col, y: row)
-        
-        let down = viewAtGridPosition(gridPos.down())
-        
     }
     
     func placeView (view: ReordableView) {
@@ -384,14 +385,20 @@ class ReordableGridView: UIScrollView, Reordable {
         var y : CGFloat = 0
         
         if let up = gridPosition.up() {
-            y = viewAtGridPosition(up).bottom + verticalPadding!
+            y = viewAtGridPosition(up)!.bottom + verticalPadding!
         }
         
         return CGPoint (x: x, y: y)
     }
     
-    func viewAtGridPosition (gridPosition: GridPosition) -> ReordableView {
-        return reordableViews[gridPosition.arrayIndex(colsInRow!)]
+    
+    func viewAtGridPosition (gridPosition: GridPosition) -> ReordableView? {
+        let index = gridPosition.arrayIndex(colsInRow!)
+        if (index < reordableViews.count) {
+            return reordableViews[index]
+        } else {
+            return nil
+        }
     }
     
     func heightOfCol (col: Int) -> CGFloat {
@@ -420,8 +427,6 @@ class ReordableGridView: UIScrollView, Reordable {
         var view = viewAtGridPosition(gridPosition)
         reordableViews.removeAtIndex(gridPosition.arrayIndex(colsInRow!))
         currentCol--
-        
-        invalidateCol(gridPosition.col())
     }
     
     
@@ -439,10 +444,10 @@ class ReordableGridView: UIScrollView, Reordable {
         let col : Int = min(Int(location.x) / Int(itemWidth! + horizontalPadding!), colsInRow!-1)
         let rowCount : Int = reordableViews.count/colsInRow!
         
-
+        
     }
     
     func didReordererdView (view: ReordableView, pan: UIPanGestureRecognizer) {
-
+        
     }
 }

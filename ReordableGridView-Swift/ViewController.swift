@@ -46,6 +46,9 @@ class ViewController: UIViewController {
     var gridView : ReordableGridView?
     var itemCount: Int = 0
     
+    let w = UIScreen.mainScreen().bounds.size.width
+    let h = UIScreen.mainScreen().bounds.size.height
+    
     
     
     // MARK: Lifecycle
@@ -58,8 +61,8 @@ class ViewController: UIViewController {
         bottomColor = RGBColor(65, g: 65, b: 65)
         
         gridView = ReordableGridView(frame: self.view.frame, itemWidth: 200)
-        gridView!.backgroundColor = bgColor
-        
+
+        self.view.backgroundColor = bgColor
         self.view.addSubview(gridView!)
         
         for _ in 0...40 {
@@ -110,19 +113,15 @@ class ViewController: UIViewController {
     
     // MARK Interface Rotation
 
-    override func didRotateFromInterfaceOrientation(fromInterfaceOrientation: UIInterfaceOrientation) {
-        let w = UIScreen.mainScreen().bounds.size.width
-        let h = UIScreen.mainScreen().bounds.size.height
-        
-        if (fromInterfaceOrientation.isPortrait) {
-            gridView?.setW(h, h: w)
+    override func willRotateToInterfaceOrientation(toInterfaceOrientation: UIInterfaceOrientation, duration: NSTimeInterval) {
+        if (toInterfaceOrientation.isPortrait) {
+            gridView?.setW(w, h: h)
             gridView?.invalidateLayout()
         } else {
-            gridView?.setW(w, h: h)
+            gridView?.setW(h, h: w)
             gridView?.invalidateLayout()
         }
     }
-    
     
     
     // MARK: Utils
