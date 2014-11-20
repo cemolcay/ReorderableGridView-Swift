@@ -79,6 +79,10 @@ extension UIView {
     }
     
     func setPosition (position: CGPoint) {
+        if (frame.origin == position) {
+            return
+        }
+        
         UIView.animateWithDuration(0.2, animations: { () -> Void in
             self.frame = CGRect (x: position.x, y: position.y, width: self.w, height: self.h)
         })
@@ -373,7 +377,7 @@ class ReordableGridView: UIScrollView, Reordable {
     func invalidateLayout () {
         colsInRow = Int (self.w / itemWidth!)
         horizontalPadding = (self.w - (CGFloat(colsInRow!) * itemWidth!)) / (CGFloat(colsInRow!) - 1)
-        contentSize.height = 0
+        contentSize.height = contentOffset.y + h
         
         currentCol = 0
         currentRow = 0
@@ -392,8 +396,11 @@ class ReordableGridView: UIScrollView, Reordable {
         let x = currentCol++
         
         let gridPosition = GridPosition (x: x, y: y)
-        view.delegate = self
         view.gridPosition = gridPosition
+        
+        if reordable {
+            view.delegate = self
+        }
         
         let pos = gridPositionToViewPosition(gridPosition)
         view.setPosition(pos)
@@ -437,14 +444,6 @@ class ReordableGridView: UIScrollView, Reordable {
         } else {
             return nil
         }
-    }
-    
-    func heightOfCol (col: Int) -> CGFloat {
-        var height: CGFloat = 0
-        
-        // TODO: fix this func
-        
-        return height
     }
     
     
