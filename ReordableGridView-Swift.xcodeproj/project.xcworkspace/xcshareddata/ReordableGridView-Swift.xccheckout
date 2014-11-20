@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>0FC2F698-B9C1-4634-BAFC-F2FA48F24EDE</string>
+	<key>IDESourceControlProjectName</key>
+	<string>ReordableGridView-Swift</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>2A6249D544D1E1349BAC88A3DF3143C5072ED4CE</key>
+		<string>https://github.com/cemolcay/ReordableGridView-Swift.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>ReordableGridView-Swift.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>2A6249D544D1E1349BAC88A3DF3143C5072ED4CE</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/cemolcay/ReordableGridView-Swift.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>2A6249D544D1E1349BAC88A3DF3143C5072ED4CE</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>2A6249D544D1E1349BAC88A3DF3143C5072ED4CE</string>
+			<key>IDESourceControlWCCName</key>
+			<string>ReordableGridView-Swift</string>
+		</dict>
+	</array>
+</dict>
+</plist>

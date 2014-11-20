@@ -74,7 +74,7 @@ class ViewController: UIViewController {
         self.navigationItem.leftBarButtonItem = add
         self.navigationItem.rightBarButtonItem = remove
         
-        gridView = ReordableGridView(frame: self.view.frame, itemWidth: 200, verticalPadding: 20)
+        gridView = ReordableGridView(frame: self.view.frame, itemWidth: 180, verticalPadding: 20)
         self.view.addSubview(gridView!)
         
         for _ in 0..<20 {
@@ -83,7 +83,7 @@ class ViewController: UIViewController {
     }
     
     func itemView () -> ReordableView {
-        var w : CGFloat = 200
+        var w : CGFloat = 160
         var h : CGFloat = 100 + CGFloat(arc4random()%100)
         
         let view = ReordableView (x: 0, y: 0, w: w, h: h)
