@@ -61,7 +61,7 @@ set them if you want your grid editable or not
 
     func didDragStartedForView (reordableGridView: ReordableGridView, view: ReordableView)
     func didDraggedView (reordableGridView: ReordableGridView, view: ReordableView)
-    func didDragEndFonView (reordableGridView: ReordableGridView, view: ReordableView)
+    func didDragEndForView (reordableGridView: ReordableGridView, view: ReordableView)
 
 
 set `gridView.draggableDelegate = self` and implement `Draggable` protocol functions if you want to access info about dragging actions in grid.   
