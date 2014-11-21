@@ -51,6 +51,19 @@ or  remove them
 Optional Values
 ---------------
 
-    var reordable : Bool = true
-  
+      var reordable : Bool = true
+      var draggable : Bool = true
+      var draggableDelegate: Draggable?
+
 set them if you want your grid editable or not
+
+**Draggable Protocol**
+
+    func didDragStartedForView (reordableGridView: ReordableGridView, view: ReordableView)
+    func didDraggedView (reordableGridView: ReordableGridView, view: ReordableView)
+    func didDragEndFonView (reordableGridView: ReordableGridView, view: ReordableView)
+
+
+set `gridView.draggableDelegate = self` and implement `Draggable` protocol functions if you want to access info about dragging actions in grid.   
+This can be useful for multiple grid layouts.  
+Example included in second tab of demo.
