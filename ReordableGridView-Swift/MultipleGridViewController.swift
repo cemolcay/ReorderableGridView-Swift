@@ -129,6 +129,8 @@ class MultipleGridViewController: UIViewController, Draggable {
             if (CGRectContainsPoint(selectedItemsGridContainerView.frame, convertedPos)) {
                 itemsGrid?.removeReordableView(view)
                 selectedItemsGrid?.addReordableView(view)
+            } else {
+                reordableGridView.invalidateLayout()
             }
         }
         
@@ -140,6 +142,8 @@ class MultipleGridViewController: UIViewController, Draggable {
             if (CGRectContainsPoint(itemsGridContainerView.frame, convertedPos)) {
                 selectedItemsGrid?.removeReordableView(view)
                 itemsGrid?.addReordableView(view)
+            } else {
+                reordableGridView.invalidateLayout()
             }
         }
     }
