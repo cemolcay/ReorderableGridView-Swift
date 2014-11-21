@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B25078711A1F36E300651D6A /* MultipleGridViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B25078701A1F36E200651D6A /* MultipleGridViewController.swift */; };
 		B2C47F671A1C9078002FDA24 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C47F661A1C9078002FDA24 /* AppDelegate.swift */; };
 		B2C47F691A1C9078002FDA24 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C47F681A1C9078002FDA24 /* ViewController.swift */; };
 		B2C47F6C1A1C9078002FDA24 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2C47F6A1A1C9078002FDA24 /* Main.storyboard */; };
@@ -27,6 +28,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B25078701A1F36E200651D6A /* MultipleGridViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipleGridViewController.swift; sourceTree = "<group>"; };
 		B2C47F611A1C9078002FDA24 /* ReordableGridView-Swift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ReordableGridView-Swift.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2C47F651A1C9078002FDA24 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B2C47F661A1C9078002FDA24 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -81,6 +83,7 @@
 			children = (
 				B2C47F661A1C9078002FDA24 /* AppDelegate.swift */,
 				B2C47F681A1C9078002FDA24 /* ViewController.swift */,
+				B25078701A1F36E200651D6A /* MultipleGridViewController.swift */,
 				B2C47F861A1C909B002FDA24 /* ReordableGridView.swift */,
 				B2C47F641A1C9078002FDA24 /* Supporting Files */,
 			);
@@ -215,6 +218,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B25078711A1F36E300651D6A /* MultipleGridViewController.swift in Sources */,
 				B2C47F691A1C9078002FDA24 /* ViewController.swift in Sources */,
 				B2C47F871A1C909B002FDA24 /* ReordableGridView.swift in Sources */,
 				B2C47F671A1C9078002FDA24 /* AppDelegate.swift in Sources */,

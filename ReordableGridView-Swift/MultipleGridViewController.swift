@@ -1,51 +1,27 @@
 //
-//  ViewController.swift
+//  MultipleGridViewController.swift
 //  ReordableGridView-Swift
 //
-//  Created by Cem Olcay on 19/11/14.
+//  Created by Cem Olcay on 21/11/14.
 //  Copyright (c) 2014 Cem Olcay. All rights reserved.
 //
 
 import UIKit
 
-extension UIFont {
-    
-    enum FontType: String {
-        case Regular = "Regular"
-        case Bold = "Bold"
-        case Light = "Light"
-        case UltraLight = "UltraLight"
-        case Italic = "Italic"
-        case Thin = "Thin"
-    }
-    
-    enum FontName: String {
-        case HelveticaNeue = "HelveticaNeue"
-        case Helvetica = "Helvetica"
-        case Futura = "Futura"
-        case Menlo = "Menlo"
-    }
-
-    class func Font (name: FontName, type: FontType, size: CGFloat) -> UIFont {
-        return UIFont (name: name.rawValue + "-" + type.rawValue, size: size)!
-    }
-    
-    class func HelveticaNeue (type: FontType, size: CGFloat) -> UIFont {
-        return Font(.HelveticaNeue, type: type, size: size)
-    }
-}
-
-class ViewController: UIViewController {
+class MultipleGridViewController: UIViewController, Draggable {
 
     // MARK: Properties
+    @IBOutlet var selectedItemsGridContainerView: UIView!
+    @IBOutlet var itemsGridContainerView: UIView!
+    
+    var selectedItemsGrid: ReordableGridView?
+    var itemsGrid: ReordableGridView?
+    var itemCount: Int = 0
     
     var borderColor: UIColor?
     var bgColor: UIColor?
     var bottomColor: UIColor?
     
-    var gridView : ReordableGridView?
-    var itemCount: Int = 0
-
     
     
     // MARK: Lifecycle
@@ -57,34 +33,38 @@ class ViewController: UIViewController {
         bgColor = RGBColor(242, g: 242, b: 242)
         bottomColor = RGBColor(65, g: 65, b: 65)
         
-        self.title = "Reordable Grid"
-        self.navigationItem.title = "Reordable Grid View Demo"
+        self.title = "Multiple Grid"
+        self.navigationItem.title = "Multiple Grid View Demo"
         self.view.backgroundColor = bgColor
         
-        setupGridView()
-    }
-    
-    
-    override func viewDidAppear(animated: Bool) {
-        if let grid = gridView {
-            grid.invalidateLayout()
+        selectedItemsGrid = ReordableGridView (frame: selectedItemsGridContainerView.bounds, itemWidth: 180)
+        selectedItemsGrid?.draggableDelegate = self
+        selectedItemsGrid?.reordable = false
+        selectedItemsGrid?.clipsToBounds = false
+        selectedItemsGridContainerView.addSubview(selectedItemsGrid!)
+
+        itemsGrid = ReordableGridView (frame: itemsGridContainerView.bounds, itemWidth: 180)
+        itemsGrid?.draggableDelegate = self
+        itemsGrid?.clipsToBounds = false
+        itemsGrid?.reordable = false
+        itemsGridContainerView.addSubview(itemsGrid!)
+        
+        for _ in 0..<20 {
+            itemsGrid?.addReordableView(itemView())
         }
     }
     
-    // MARK: Grid View
-    
-    func setupGridView () {
-        let add = UIBarButtonItem (barButtonSystemItem: UIBarButtonSystemItem.Add, target: self, action: "addPressed:")
-        let remove = UIBarButtonItem (barButtonSystemItem: UIBarButtonSystemItem.Trash, target: self, action: "removePressed:")
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
         
-        self.navigationItem.leftBarButtonItem = add
-        self.navigationItem.rightBarButtonItem = remove
+        if let grid = itemsGrid {
+            grid.frame = itemsGridContainerView.bounds
+            grid.invalidateLayout()
+        }
         
-        gridView = ReordableGridView(frame: self.view.frame, itemWidth: 180, verticalPadding: 20)
-        self.view.addSubview(gridView!)
-        
-        for _ in 0..<20 {
-            gridView!.addReordableView(itemView())
+        if let grid = selectedItemsGrid {
+            grid.frame = selectedItemsGridContainerView.bounds
+            grid.invalidateLayout()
         }
     }
     
@@ -127,31 +107,53 @@ class ViewController: UIViewController {
         
         return view
     }
-
-
     
-    // MARK: Add/Remove
     
-    func addPressed (sender: AnyObject) {
-        //gridView?.addReordableView(itemView())
-        gridView?.addReordableView(itemView(), gridPosition: GridPosition (x: 0, y: 1))
+    
+    // MARK: Draggable
+    
+    func didDragStartedForView(reordableGridView: ReordableGridView, view: ReordableView) {
+        
     }
     
-    func removePressed (sender: AnyObject) {
-        gridView?.removeReordableViewAtGridPosition(GridPosition (x: 0, y: 0))
-        //gridView?.removeReordableView(gridView!.reordableViews[2])
+    func didDraggedView(reordableGridView: ReordableGridView, view: ReordableView) {
+        
     }
     
+    func didDragEndFonView(reordableGridView: ReordableGridView, view: ReordableView) {
+        
+        // items grid to selected items grid
+        
+        if (reordableGridView == itemsGrid!) {
+            let convertedPos : CGPoint = self.view.convertPoint(view.center, fromView: itemsGridContainerView)
+            if (CGRectContainsPoint(selectedItemsGridContainerView.frame, convertedPos)) {
+                itemsGrid?.removeReordableView(view)
+                selectedItemsGrid?.addReordableView(view)
+            }
+        }
+        
+            
+        // selected items grid to items grid
+            
+        else if (reordableGridView == selectedItemsGrid!) {
+            let convertedPos : CGPoint = self.view.convertPoint(view.center, fromView: selectedItemsGridContainerView)
+            if (CGRectContainsPoint(itemsGridContainerView.frame, convertedPos)) {
+                selectedItemsGrid?.removeReordableView(view)
+                itemsGrid?.addReordableView(view)
+            }
+        }
+    }
+
     
     
     // MARK: Interface Rotation
-
-    override func willRotateToInterfaceOrientation(toInterfaceOrientation: UIInterfaceOrientation, duration: NSTimeInterval) {
-        let w = UIScreen.mainScreen().bounds.size.width
-        let h = UIScreen.mainScreen().bounds.size.height
+    
+    override func didRotateFromInterfaceOrientation(fromInterfaceOrientation: UIInterfaceOrientation) {
+        selectedItemsGrid?.frame = selectedItemsGridContainerView.bounds
+        itemsGrid?.frame = itemsGridContainerView.bounds
         
-        gridView?.setW(h, h: w)
-        gridView?.invalidateLayout()
+        selectedItemsGrid?.invalidateLayout()
+        itemsGrid?.invalidateLayout()
     }
     
     
@@ -174,4 +176,3 @@ class ViewController: UIViewController {
         return UIColor (red: r / 255.0, green: g / 255.0, blue: b / 255.0, alpha: a)
     }
 }
-

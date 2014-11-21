@@ -118,8 +118,15 @@ extension UIView {
 
 protocol Reordable {
     func didReorderStartedForView (view: ReordableView)
-    func didReorderingView (view: ReordableView, pan: UIPanGestureRecognizer)
-    func didReordererdView (view: ReordableView, pan: UIPanGestureRecognizer)
+    func didReorderedView (view: ReordableView, pan: UIPanGestureRecognizer)
+    func didReorderEndForView (view: ReordableView, pan: UIPanGestureRecognizer)
+}
+
+
+protocol Draggable {
+    func didDragStartedForView (reordableGridView: ReordableGridView, view: ReordableView)
+    func didDraggedView (reordableGridView: ReordableGridView, view: ReordableView)
+    func didDragEndFonView (reordableGridView: ReordableGridView, view: ReordableView)
 }
 
 
@@ -289,10 +296,10 @@ class ReordableView: UIView, UIGestureRecognizerDelegate {
         switch gesture.state {
         case .Ended:
             isReordering = false
-            delegate.didReordererdView(self, pan: pan!)
+            delegate.didReorderEndForView(self, pan: pan!)
             
         case .Changed:
-            delegate.didReorderingView(self, pan: pan!)
+            delegate.didReorderedView(self, pan: pan!)
         
         default:
             return
@@ -340,6 +347,8 @@ class ReordableGridView: UIScrollView, Reordable {
     var reordable : Bool = true
     var draggable : Bool = true
     
+    var draggableDelegate: Draggable?
+    
     var reordableViews : [ReordableView] = []
     
     
@@ -350,7 +359,7 @@ class ReordableGridView: UIScrollView, Reordable {
         super.init(frame: frame)
         self.itemWidth = itemWidth
         self.verticalPadding = verticalPadding
-    
+        
         invalidateLayout()
     }
     
@@ -397,10 +406,7 @@ class ReordableGridView: UIScrollView, Reordable {
         
         let gridPosition = GridPosition (x: x, y: y)
         view.gridPosition = gridPosition
-        
-        if reordable {
-            view.delegate = self
-        }
+        view.delegate = self
         
         let pos = gridPositionToViewPosition(gridPosition)
         view.setPosition(pos)
@@ -456,6 +462,12 @@ class ReordableGridView: UIScrollView, Reordable {
         invalidateLayout()
     }
     
+    func addReordableView (view: ReordableView, gridPosition: GridPosition) {
+        super.addSubview(view)
+        reordableViews.insert(view, atIndex: gridPosition.arrayIndex(colsInRow!))
+        invalidateLayout()
+    }
+    
     
     
     // MARK: Removing
@@ -469,21 +481,39 @@ class ReordableGridView: UIScrollView, Reordable {
         }
     }
     
+    func removeReordableView (view: ReordableView) {
+        if let pos = view.gridPosition {
+            removeReordableViewAtGridPosition(pos)
+        } else {
+            println ("view is not in grid hierarchy")
+        }
+    }
     
     
     // MARK: Reordable
     
     func didReorderStartedForView (view: ReordableView) {
-        
+        draggableDelegate?.didDragStartedForView(self, view: view)
     }
     
-    func didReorderingView (view: ReordableView, pan: UIPanGestureRecognizer) {
+    func didReorderedView (view: ReordableView, pan: UIPanGestureRecognizer) {
+    
+        if !draggable {
+            return
+        } else {
+            draggableDelegate?.didDraggedView(self, view: view)
+        }
+        
         let location = pan.locationInView(self)
         view.center = location
+    
+        
+        if !reordable {
+            return
+        }
         
         let col : Int = min(Int(location.x) / Int(itemWidth! + horizontalPadding!), colsInRow!-1)
         let rowCount : Int = reordableViews.count/colsInRow!
-        
         
         var gridPos = GridPosition (x: col, y: 0)
         for (var row = 0; row < reordableViews.count/colsInRow!; row++) {
@@ -502,7 +532,13 @@ class ReordableGridView: UIScrollView, Reordable {
         }
     }
     
-    func didReordererdView (view: ReordableView, pan: UIPanGestureRecognizer) {
-        invalidateLayout()
+    func didReorderEndForView (view: ReordableView, pan: UIPanGestureRecognizer) {
+        if reordable {
+            invalidateLayout()
+        }
+        
+        if draggable {
+            draggableDelegate?.didDragEndFonView(self, view: view)
+        }
     }
 }
