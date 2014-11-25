@@ -319,6 +319,26 @@ class ReorderableGridView: UIScrollView, Reorderable {
     
     // MARK: Properties
     
+    var itemWidth: CGFloat?
+    var verticalPadding: CGFloat?
+    var horizontalPadding: CGFloat?
+    var colsInRow: Int?
+    
+    var visibleRect: CGRect?
+    var visibleViews: [ReorderableView] = []
+    var reusableViews: [ReorderableView] = []
+    
+    var reorderable : Bool = true
+    var draggable : Bool = true
+    
+    var draggableDelegate: Draggable?
+    
+    var reorderableViews : [ReorderableView] = []
+    
+    
+    
+    // MARK: Observers
+    
     var currentCol: Int = 0 {
         didSet {
             if currentCol > colsInRow!-1 {
@@ -338,33 +358,15 @@ class ReorderableGridView: UIScrollView, Reorderable {
             }
         }
     }
-    
-    var itemWidth: CGFloat?
-    var verticalPadding: CGFloat?
-    var horizontalPadding: CGFloat?
-    var colsInRow: Int?
-    
-    var renderedRect: CGRect?
-    var renderingViews: [ReorderableView] = []
-    
-    var reorderable : Bool = true
-    var draggable : Bool = true
-    
-    var draggableDelegate: Draggable?
-    
-    var ReorderableViews : [ReorderableView] = []
-    
-    
-    
-    // MARK: Observers
 
     override var contentOffset: CGPoint {
         didSet {
-            renderedRect?.origin = contentOffset
+            visibleRect? = CGRect (origin: contentOffset, size: frame.size)
+            checkReusableViews()
         }
     }
     
-
+    
     
     // MARK: Lifecycle
     
@@ -372,7 +374,7 @@ class ReorderableGridView: UIScrollView, Reorderable {
         super.init(frame: frame)
         self.itemWidth = itemWidth
         self.verticalPadding = verticalPadding
-        self.renderedRect = frame
+        self.visibleRect = frame
         
         invalidateLayout()
     }
@@ -393,6 +395,54 @@ class ReorderableGridView: UIScrollView, Reorderable {
         setContentHeight(contentSize.height + height)
     }
 
+    func isViewVisible (view: ReorderableView) -> Bool {
+        if let rect = visibleRect {
+            return CGRectIntersectsRect(view.frame, rect)
+        } else {
+            return false
+        }
+    }
+    
+    func checkReusableViews () {
+        for view in reorderableViews {
+            if isViewVisible(view) {
+                // is already added to view stack
+                if let superView = view.superview {
+                    if superView == self {
+                        // already added
+                        continue
+                    } else {
+                        // FIXME: another view is super !
+                        continue
+                    }
+                } else {
+                    if let gridPos = view.gridPosition {
+                        // add
+                        addSubview(view)
+                        placeView(view, toGridPosition: gridPos)
+                    } else {
+                        // not initilized yet
+                        continue
+                    }
+                }
+            } else {
+                // should removed
+                if let superView = view.superview {
+                    if superView == self {
+                        // remove
+                        view.removeFromSuperview()
+                    } else {
+                        // FIXME: another view is super !
+                        continue
+                    }
+                } else {
+                    // already removed 
+                    continue
+                }
+            }
+        }
+    }
+    
     
     
     // MARK: Layout
@@ -405,27 +455,26 @@ class ReorderableGridView: UIScrollView, Reorderable {
         currentCol = 0
         currentRow = 0
 
-        if ReorderableViews.isEmpty {
+        if reorderableViews.isEmpty {
             return
         }
         
-        for i in 0...ReorderableViews.count-1 {
-            placeView(ReorderableViews[i])
+        for i in 0...reorderableViews.count-1 {
+            let y = currentRow
+            let x = currentCol++
+            let gridPosition = GridPosition (x: x, y: y)
+            
+            placeView(reorderableViews[i], toGridPosition: gridPosition)
         }
     }
     
-    func placeView (view: ReorderableView) {
-        let y = currentRow
-        let x = currentCol++
-        
-        let gridPosition = GridPosition (x: x, y: y)
-        view.gridPosition = gridPosition
+    func placeView (view: ReorderableView, toGridPosition: GridPosition) {
+        view.gridPosition = toGridPosition
         view.delegate = self
         
-        let pos = gridPositionToViewPosition(gridPosition)
+        let pos = gridPositionToViewPosition(toGridPosition)
         view.setPosition(pos)
         
-
         let height = view.botttomWithOffset(verticalPadding!)
         if height > contentSize.height {
             setContentHeight(height)
@@ -437,8 +486,8 @@ class ReorderableGridView: UIScrollView, Reorderable {
             return
         }
     
-        ReorderableViews.removeAtIndex(view.gridPosition!.arrayIndex(colsInRow!))
-        ReorderableViews.insert(view, atIndex: position.arrayIndex(colsInRow!))
+        reorderableViews.removeAtIndex(view.gridPosition!.arrayIndex(colsInRow!))
+        reorderableViews.insert(view, atIndex: position.arrayIndex(colsInRow!))
         invalidateLayout()
     }
     
@@ -459,8 +508,8 @@ class ReorderableGridView: UIScrollView, Reorderable {
     
     func viewAtGridPosition (gridPosition: GridPosition) -> ReorderableView? {
         let index = gridPosition.arrayIndex(colsInRow!)
-        if (index < ReorderableViews.count) {
-            return ReorderableViews[index]
+        if (index < reorderableViews.count) {
+            return reorderableViews[index]
         } else {
             return nil
         }
@@ -472,13 +521,13 @@ class ReorderableGridView: UIScrollView, Reorderable {
     
     func addReorderableView (view: ReorderableView) {
         super.addSubview(view)
-        ReorderableViews.append(view)
+        reorderableViews.append(view)
         invalidateLayout()
     }
     
     func addReorderableView (view: ReorderableView, gridPosition: GridPosition) {
         super.addSubview(view)
-        ReorderableViews.insert(view, atIndex: gridPosition.arrayIndex(colsInRow!))
+        reorderableViews.insert(view, atIndex: gridPosition.arrayIndex(colsInRow!))
         invalidateLayout()
     }
     
@@ -488,7 +537,7 @@ class ReorderableGridView: UIScrollView, Reorderable {
     
     func removeReorderableViewAtGridPosition (gridPosition: GridPosition) {
         if let view = viewAtGridPosition(gridPosition) {
-            ReorderableViews.removeAtIndex(gridPosition.arrayIndex(colsInRow!))
+            reorderableViews.removeAtIndex(gridPosition.arrayIndex(colsInRow!))
             
             view.removeFromSuperview()
             invalidateLayout()
@@ -528,10 +577,10 @@ class ReorderableGridView: UIScrollView, Reorderable {
         }
         
         let col : Int = min(Int(location.x) / Int(itemWidth! + horizontalPadding!), colsInRow!-1)
-        let rowCount : Int = ReorderableViews.count/colsInRow!
+        let rowCount : Int = reorderableViews.count/colsInRow!
         
         var gridPos = GridPosition (x: col, y: 0)
-        for (var row = 0; row < ReorderableViews.count/colsInRow!; row++) {
+        for (var row = 0; row < reorderableViews.count/colsInRow!; row++) {
             gridPos.y = row
             
             if let otherView = viewAtGridPosition(gridPos) {

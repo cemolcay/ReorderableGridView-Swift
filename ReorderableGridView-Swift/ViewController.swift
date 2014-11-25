@@ -64,7 +64,6 @@ class ViewController: UIViewController {
         setupGridView()
     }
     
-    
     override func viewDidAppear(animated: Bool) {
         if let grid = gridView {
             grid.invalidateLayout()
@@ -82,10 +81,10 @@ class ViewController: UIViewController {
         self.navigationItem.leftBarButtonItem = add
         self.navigationItem.rightBarButtonItem = remove
         
-        gridView = ReorderableGridView(frame: self.view.frame, itemWidth: 180, verticalPadding: 20)
-        self.view.addSubview(gridView!)
+        gridView = ReorderableGridView(frame: view.frame, itemWidth: 180, verticalPadding: 20)
+        view.addSubview(gridView!)
         
-        for _ in 0..<20 {
+        for _ in 0..<40 {
             gridView!.addReorderableView(itemView())
         }
     }
