@@ -84,7 +84,7 @@ class ViewController: UIViewController {
         gridView = ReorderableGridView(frame: view.frame, itemWidth: 180, verticalPadding: 20)
         view.addSubview(gridView!)
         
-        for _ in 0..<40 {
+        for _ in 0..<100 {
             gridView!.addReorderableView(itemView())
         }
     }

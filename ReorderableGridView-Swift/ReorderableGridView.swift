@@ -325,8 +325,6 @@ class ReorderableGridView: UIScrollView, Reorderable {
     var colsInRow: Int?
     
     var visibleRect: CGRect?
-    var visibleViews: [ReorderableView] = []
-    var reusableViews: [ReorderableView] = []
     
     var reorderable : Bool = true
     var draggable : Bool = true
@@ -395,7 +393,7 @@ class ReorderableGridView: UIScrollView, Reorderable {
         setContentHeight(contentSize.height + height)
     }
 
-    func isViewVisible (view: ReorderableView) -> Bool {
+    func isViewInVisibleRect (view: ReorderableView) -> Bool {
         if let rect = visibleRect {
             return CGRectIntersectsRect(view.frame, rect)
         } else {
@@ -405,7 +403,7 @@ class ReorderableGridView: UIScrollView, Reorderable {
     
     func checkReusableViews () {
         for view in reorderableViews {
-            if isViewVisible(view) {
+            if isViewInVisibleRect(view) {
                 // is already added to view stack
                 if let superView = view.superview {
                     if superView == self {
