@@ -13,8 +13,8 @@
 		B2C47F6C1A1C9078002FDA24 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2C47F6A1A1C9078002FDA24 /* Main.storyboard */; };
 		B2C47F6E1A1C9078002FDA24 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B2C47F6D1A1C9078002FDA24 /* Images.xcassets */; };
 		B2C47F711A1C9078002FDA24 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = B2C47F6F1A1C9078002FDA24 /* LaunchScreen.xib */; };
-		B2C47F7D1A1C9078002FDA24 /* ReordableGridView_SwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C47F7C1A1C9078002FDA24 /* ReordableGridView_SwiftTests.swift */; };
-		B2C47F871A1C909B002FDA24 /* ReordableGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C47F861A1C909B002FDA24 /* ReordableGridView.swift */; };
+		B2C47F7D1A1C9078002FDA24 /* ReorderableGridView_SwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C47F7C1A1C9078002FDA24 /* ReorderableGridView_SwiftTests.swift */; };
+		B2C47F871A1C909B002FDA24 /* ReorderableGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C47F861A1C909B002FDA24 /* ReorderableGridView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -23,23 +23,23 @@
 			containerPortal = B2C47F591A1C9078002FDA24 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = B2C47F601A1C9078002FDA24;
-			remoteInfo = "ReordableGridView-Swift";
+			remoteInfo = "ReorderableGridView-Swift";
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		B25078701A1F36E200651D6A /* MultipleGridViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipleGridViewController.swift; sourceTree = "<group>"; };
-		B2C47F611A1C9078002FDA24 /* ReordableGridView-Swift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ReordableGridView-Swift.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B2C47F611A1C9078002FDA24 /* ReorderableGridView-Swift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ReorderableGridView-Swift.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2C47F651A1C9078002FDA24 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B2C47F661A1C9078002FDA24 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B2C47F681A1C9078002FDA24 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		B2C47F6B1A1C9078002FDA24 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B2C47F6D1A1C9078002FDA24 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		B2C47F701A1C9078002FDA24 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		B2C47F761A1C9078002FDA24 /* ReordableGridView-SwiftTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ReordableGridView-SwiftTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B2C47F761A1C9078002FDA24 /* ReorderableGridView-SwiftTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ReorderableGridView-SwiftTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2C47F7B1A1C9078002FDA24 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B2C47F7C1A1C9078002FDA24 /* ReordableGridView_SwiftTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReordableGridView_SwiftTests.swift; sourceTree = "<group>"; };
-		B2C47F861A1C909B002FDA24 /* ReordableGridView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReordableGridView.swift; sourceTree = "<group>"; };
+		B2C47F7C1A1C9078002FDA24 /* ReorderableGridView_SwiftTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReorderableGridView_SwiftTests.swift; sourceTree = "<group>"; };
+		B2C47F861A1C909B002FDA24 /* ReorderableGridView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReorderableGridView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,8 +63,8 @@
 		B2C47F581A1C9078002FDA24 = {
 			isa = PBXGroup;
 			children = (
-				B2C47F631A1C9078002FDA24 /* ReordableGridView-Swift */,
-				B2C47F791A1C9078002FDA24 /* ReordableGridView-SwiftTests */,
+				B2C47F631A1C9078002FDA24 /* ReorderableGridView-Swift */,
+				B2C47F791A1C9078002FDA24 /* ReorderableGridView-SwiftTests */,
 				B2C47F621A1C9078002FDA24 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -72,22 +72,22 @@
 		B2C47F621A1C9078002FDA24 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				B2C47F611A1C9078002FDA24 /* ReordableGridView-Swift.app */,
-				B2C47F761A1C9078002FDA24 /* ReordableGridView-SwiftTests.xctest */,
+				B2C47F611A1C9078002FDA24 /* ReorderableGridView-Swift.app */,
+				B2C47F761A1C9078002FDA24 /* ReorderableGridView-SwiftTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		B2C47F631A1C9078002FDA24 /* ReordableGridView-Swift */ = {
+		B2C47F631A1C9078002FDA24 /* ReorderableGridView-Swift */ = {
 			isa = PBXGroup;
 			children = (
 				B2C47F661A1C9078002FDA24 /* AppDelegate.swift */,
 				B2C47F681A1C9078002FDA24 /* ViewController.swift */,
 				B25078701A1F36E200651D6A /* MultipleGridViewController.swift */,
-				B2C47F861A1C909B002FDA24 /* ReordableGridView.swift */,
+				B2C47F861A1C909B002FDA24 /* ReorderableGridView.swift */,
 				B2C47F641A1C9078002FDA24 /* Supporting Files */,
 			);
-			path = "ReordableGridView-Swift";
+			path = "ReorderableGridView-Swift";
 			sourceTree = "<group>";
 		};
 		B2C47F641A1C9078002FDA24 /* Supporting Files */ = {
@@ -101,13 +101,13 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		B2C47F791A1C9078002FDA24 /* ReordableGridView-SwiftTests */ = {
+		B2C47F791A1C9078002FDA24 /* ReorderableGridView-SwiftTests */ = {
 			isa = PBXGroup;
 			children = (
-				B2C47F7C1A1C9078002FDA24 /* ReordableGridView_SwiftTests.swift */,
+				B2C47F7C1A1C9078002FDA24 /* ReorderableGridView_SwiftTests.swift */,
 				B2C47F7A1A1C9078002FDA24 /* Supporting Files */,
 			);
-			path = "ReordableGridView-SwiftTests";
+			path = "ReorderableGridView-SwiftTests";
 			sourceTree = "<group>";
 		};
 		B2C47F7A1A1C9078002FDA24 /* Supporting Files */ = {
@@ -121,9 +121,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		B2C47F601A1C9078002FDA24 /* ReordableGridView-Swift */ = {
+		B2C47F601A1C9078002FDA24 /* ReorderableGridView-Swift */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B2C47F801A1C9078002FDA24 /* Build configuration list for PBXNativeTarget "ReordableGridView-Swift" */;
+			buildConfigurationList = B2C47F801A1C9078002FDA24 /* Build configuration list for PBXNativeTarget "ReorderableGridView-Swift" */;
 			buildPhases = (
 				B2C47F5D1A1C9078002FDA24 /* Sources */,
 				B2C47F5E1A1C9078002FDA24 /* Frameworks */,
@@ -133,14 +133,14 @@
 			);
 			dependencies = (
 			);
-			name = "ReordableGridView-Swift";
-			productName = "ReordableGridView-Swift";
-			productReference = B2C47F611A1C9078002FDA24 /* ReordableGridView-Swift.app */;
+			name = "ReorderableGridView-Swift";
+			productName = "ReorderableGridView-Swift";
+			productReference = B2C47F611A1C9078002FDA24 /* ReorderableGridView-Swift.app */;
 			productType = "com.apple.product-type.application";
 		};
-		B2C47F751A1C9078002FDA24 /* ReordableGridView-SwiftTests */ = {
+		B2C47F751A1C9078002FDA24 /* ReorderableGridView-SwiftTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B2C47F831A1C9078002FDA24 /* Build configuration list for PBXNativeTarget "ReordableGridView-SwiftTests" */;
+			buildConfigurationList = B2C47F831A1C9078002FDA24 /* Build configuration list for PBXNativeTarget "ReorderableGridView-SwiftTests" */;
 			buildPhases = (
 				B2C47F721A1C9078002FDA24 /* Sources */,
 				B2C47F731A1C9078002FDA24 /* Frameworks */,
@@ -151,9 +151,9 @@
 			dependencies = (
 				B2C47F781A1C9078002FDA24 /* PBXTargetDependency */,
 			);
-			name = "ReordableGridView-SwiftTests";
-			productName = "ReordableGridView-SwiftTests";
-			productReference = B2C47F761A1C9078002FDA24 /* ReordableGridView-SwiftTests.xctest */;
+			name = "ReorderableGridView-SwiftTests";
+			productName = "ReorderableGridView-SwiftTests";
+			productReference = B2C47F761A1C9078002FDA24 /* ReorderableGridView-SwiftTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -174,7 +174,7 @@
 					};
 				};
 			};
-			buildConfigurationList = B2C47F5C1A1C9078002FDA24 /* Build configuration list for PBXProject "ReordableGridView-Swift" */;
+			buildConfigurationList = B2C47F5C1A1C9078002FDA24 /* Build configuration list for PBXProject "ReorderableGridView-Swift" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -187,8 +187,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				B2C47F601A1C9078002FDA24 /* ReordableGridView-Swift */,
-				B2C47F751A1C9078002FDA24 /* ReordableGridView-SwiftTests */,
+				B2C47F601A1C9078002FDA24 /* ReorderableGridView-Swift */,
+				B2C47F751A1C9078002FDA24 /* ReorderableGridView-SwiftTests */,
 			);
 		};
 /* End PBXProject section */
@@ -220,7 +220,7 @@
 			files = (
 				B25078711A1F36E300651D6A /* MultipleGridViewController.swift in Sources */,
 				B2C47F691A1C9078002FDA24 /* ViewController.swift in Sources */,
-				B2C47F871A1C909B002FDA24 /* ReordableGridView.swift in Sources */,
+				B2C47F871A1C909B002FDA24 /* ReorderableGridView.swift in Sources */,
 				B2C47F671A1C9078002FDA24 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -229,7 +229,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B2C47F7D1A1C9078002FDA24 /* ReordableGridView_SwiftTests.swift in Sources */,
+				B2C47F7D1A1C9078002FDA24 /* ReorderableGridView_SwiftTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -238,7 +238,7 @@
 /* Begin PBXTargetDependency section */
 		B2C47F781A1C9078002FDA24 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = B2C47F601A1C9078002FDA24 /* ReordableGridView-Swift */;
+			target = B2C47F601A1C9078002FDA24 /* ReorderableGridView-Swift */;
 			targetProxy = B2C47F771A1C9078002FDA24 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -344,9 +344,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = "ReordableGridView-Swift/Info.plist";
+				INFOPLIST_FILE = "ReorderableGridView-Swift/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "ReorderableGridView-Swift";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -355,9 +356,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = "ReordableGridView-Swift/Info.plist";
+				INFOPLIST_FILE = "ReorderableGridView-Swift/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "ReorderableGridView-Swift";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -374,10 +376,10 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "ReordableGridView-SwiftTests/Info.plist";
+				INFOPLIST_FILE = "ReorderableGridView-SwiftTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ReordableGridView-Swift.app/ReordableGridView-Swift";
+				PRODUCT_NAME = "ReorderableGridView-SwiftTests";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ReorderableGridView-Swift.app/ReorderableGridView-Swift";
 			};
 			name = Debug;
 		};
@@ -389,17 +391,17 @@
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "ReordableGridView-SwiftTests/Info.plist";
+				INFOPLIST_FILE = "ReorderableGridView-SwiftTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ReordableGridView-Swift.app/ReordableGridView-Swift";
+				PRODUCT_NAME = "ReorderableGridView-SwiftTests";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ReorderableGridView-Swift.app/ReorderableGridView-Swift";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		B2C47F5C1A1C9078002FDA24 /* Build configuration list for PBXProject "ReordableGridView-Swift" */ = {
+		B2C47F5C1A1C9078002FDA24 /* Build configuration list for PBXProject "ReorderableGridView-Swift" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B2C47F7E1A1C9078002FDA24 /* Debug */,
@@ -408,7 +410,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B2C47F801A1C9078002FDA24 /* Build configuration list for PBXNativeTarget "ReordableGridView-Swift" */ = {
+		B2C47F801A1C9078002FDA24 /* Build configuration list for PBXNativeTarget "ReorderableGridView-Swift" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B2C47F811A1C9078002FDA24 /* Debug */,
@@ -417,7 +419,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B2C47F831A1C9078002FDA24 /* Build configuration list for PBXNativeTarget "ReordableGridView-SwiftTests" */ = {
+		B2C47F831A1C9078002FDA24 /* Build configuration list for PBXNativeTarget "ReorderableGridView-SwiftTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B2C47F841A1C9078002FDA24 /* Debug */,
