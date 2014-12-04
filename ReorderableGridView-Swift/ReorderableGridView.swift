@@ -126,7 +126,7 @@ protocol Reorderable {
 protocol Draggable {
     func didDragStartedForView (ReorderableGridView: ReorderableGridView, view: ReorderableView)
     func didDraggedView (ReorderableGridView: ReorderableGridView, view: ReorderableView)
-    func didDragEndFonView (ReorderableGridView: ReorderableGridView, view: ReorderableView)
+    func didDragEndForView (ReorderableGridView: ReorderableGridView, view: ReorderableView)
 }
 
 
@@ -600,7 +600,7 @@ class ReorderableGridView: UIScrollView, Reorderable {
         }
         
         if draggable {
-            draggableDelegate?.didDragEndFonView(self, view: view)
+            draggableDelegate?.didDragEndForView(self, view: view)
         }
     }
 }

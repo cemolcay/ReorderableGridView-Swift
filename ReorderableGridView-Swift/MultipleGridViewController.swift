@@ -120,7 +120,7 @@ class MultipleGridViewController: UIViewController, Draggable {
         
     }
     
-    func didDragEndFonView(reorderableGridView: ReorderableGridView, view: ReorderableView) {
+    func didDragEndForView(reorderableGridView: ReorderableGridView, view: ReorderableView) {
         
         // items grid to selected items grid
         
