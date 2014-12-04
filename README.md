@@ -1,4 +1,4 @@
-ReordableGridView-Swift
+ReorderableGridView-Swift
 =======================
 
 reorderable grid view solution implemented with swift. <br>
