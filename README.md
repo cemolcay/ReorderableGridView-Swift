@@ -16,23 +16,23 @@ Demo
 Usage
 -----
 
-copy & paste the `ReordableGridView.swift` into your project. <br>
+copy & paste the `ReorderableGridView.swift` into your project. <br>
 
-      gridView = ReordableGridView(frame: self.view.frame, itemWidth: 180, verticalPadding: 20)
+      gridView = ReorderableGridView(frame: self.view.frame, itemWidth: 180, verticalPadding: 20)
       self.view.addSubview(gridView!)
 
 Grid view ready !
 
-now you can add it `ReordableView` instances 
+now you can add it `ReorderableView` instances 
       
-      let itemView = ReordableView (x: 0, y: 0, w: 200, h: 250)
+      let itemView = ReorderableView (x: 0, y: 0, w: 200, h: 250)
       ...
-      gridView?.addReordableView(itemView)
+      gridView?.addReorderableView(itemView)
       
 
 or  remove them
 
-    gridView?.removeReordableViewAtGridPosition(GridPosition (x: 0, y: 0))
+    gridView?.removeReorderableViewAtGridPosition(GridPosition (x: 0, y: 0))
     
 
 
@@ -51,7 +51,7 @@ or  remove them
 Optional Values
 ---------------
 
-      var reordable : Bool = true
+      var reorderable : Bool = true
       var draggable : Bool = true
       var draggableDelegate: Draggable?
 
