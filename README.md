@@ -25,15 +25,22 @@ Grid view ready !
 
 now you can add it `ReorderableView` instances 
       
-      let itemView = ReorderableView (x: 0, y: 0, w: 200, h: 250)
+      let itemView = ReorderableView (x: 0, y: 0, w: 180, h: 250)
       ...
       gridView?.addReorderableView(itemView)
       
+      // or
+      let pos = GridPosition (x: 0, y: 1)
+      gridView?addReorderableView (itemView, gridPosition: pos)
+
+
 
 or  remove them
 
     gridView?.removeReorderableViewAtGridPosition(GridPosition (x: 0, y: 0))
     
+    // or
+    gridView?.removeReorderableView (itemView)
 
 
 > **Design Tip**  
