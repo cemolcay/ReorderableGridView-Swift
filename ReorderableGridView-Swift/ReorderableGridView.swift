@@ -525,7 +525,13 @@ class ReorderableGridView: UIScrollView, Reorderable {
     
     func addReorderableView (view: ReorderableView, gridPosition: GridPosition) {
         super.addSubview(view)
-        reorderableViews.insert(view, atIndex: gridPosition.arrayIndex(colsInRow!))
+        
+        var addingIndex = gridPosition.arrayIndex(colsInRow!)
+        if addingIndex >= reorderableViews.count {
+            addingIndex = reorderableViews.count
+        }
+        
+        reorderableViews.insert(view, atIndex: addingIndex)
         invalidateLayout()
     }
     
