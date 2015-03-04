@@ -104,6 +104,16 @@ extension UIView {
     }
     
     
+    func setPositionAnimated (position: CGPoint) {
+        if (self.position == position) {
+            return
+        }
+        
+        UIView.animateWithDuration(0.2, animations: { [unowned self] in
+            self.position = position
+        })
+    }
+    
     func leftWithOffset (offset: CGFloat) -> CGFloat {
         return self.left - offset
     }
@@ -276,7 +286,7 @@ class ReorderableView: UIView, UIGestureRecognizerDelegate {
         UIView.animateWithDuration(animationDuration, animations: { [unowned self] in
             self.alpha = 1
             self.setScale(1, y: 1)
-        }) { finished -> Void in
+        }) { [unowned self] finished -> Void in
             self.removePan()
         }
     }
@@ -487,7 +497,7 @@ class ReorderableGridView: UIScrollView, Reorderable {
         view.delegate = self
         
         let pos = gridPositionToViewPosition(toGridPosition)
-        view.position = pos
+        view.setPositionAnimated(pos)
         
         let height = view.bottomWithOffset(verticalPadding!)
         if height > contentSize.height {
