@@ -13,10 +13,20 @@ Demo
 
 ![alt tag](https://raw.githubusercontent.com/cemolcay/ReordableGridView-Swift/master/demo.gif)
 
+Install
+-------
+
+### Manual  
+copy & paste the `ReorderableGridView.swift` into your project. <br>
+
+### Cocoapods
+
+``` ruby
+      pod 'ReorderableGridView', '~> 0.2'
+```
+
 Usage
 -----
-
-copy & paste the `ReorderableGridView.swift` into your project. <br>
 
       gridView = ReorderableGridView(frame: self.view.frame, itemWidth: 180, verticalPadding: 20)
       self.view.addSubview(gridView!)
