@@ -87,7 +87,7 @@ class MultipleGridViewController: UIViewController, Draggable {
         itemLabel.center = topView.center
         itemLabel.font = UIFont.HelveticaNeue(.Thin, size: 20)
         itemLabel.textAlignment = NSTextAlignment.Center
-        itemLabel.textColor = bottomColor?
+        itemLabel.textColor = bottomColor
         itemLabel.text = "\(view.tag)"
         itemLabel.layer.masksToBounds = true
         topView.addSubview(itemLabel)

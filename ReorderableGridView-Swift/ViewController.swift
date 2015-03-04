@@ -8,23 +8,23 @@
 
 import UIKit
 
+enum FontType: String {
+    case Regular = "Regular"
+    case Bold = "Bold"
+    case Light = "Light"
+    case UltraLight = "UltraLight"
+    case Italic = "Italic"
+    case Thin = "Thin"
+}
+
+enum FontName: String {
+    case HelveticaNeue = "HelveticaNeue"
+    case Helvetica = "Helvetica"
+    case Futura = "Futura"
+    case Menlo = "Menlo"
+}
+
 extension UIFont {
-    
-    enum FontType: String {
-        case Regular = "Regular"
-        case Bold = "Bold"
-        case Light = "Light"
-        case UltraLight = "UltraLight"
-        case Italic = "Italic"
-        case Thin = "Thin"
-    }
-    
-    enum FontName: String {
-        case HelveticaNeue = "HelveticaNeue"
-        case Helvetica = "Helvetica"
-        case Futura = "Futura"
-        case Menlo = "Menlo"
-    }
 
     class func Font (name: FontName, type: FontType, size: CGFloat) -> UIFont {
         return UIFont (name: name.rawValue + "-" + type.rawValue, size: size)!
@@ -108,7 +108,7 @@ class ViewController: UIViewController {
         itemLabel.center = topView.center
         itemLabel.font = UIFont.HelveticaNeue(.Thin, size: 20)
         itemLabel.textAlignment = NSTextAlignment.Center
-        itemLabel.textColor = bottomColor?
+        itemLabel.textColor = bottomColor
         itemLabel.text = "\(view.tag)"
         itemLabel.layer.masksToBounds = true
         topView.addSubview(itemLabel)
@@ -151,7 +151,7 @@ class ViewController: UIViewController {
         let w = UIScreen.mainScreen().bounds.size.width
         let h = UIScreen.mainScreen().bounds.size.height
         
-        gridView?.setW(h, h: w)
+        gridView?.size = CGSize (width: h, height: w)
         gridView?.invalidateLayout()
     }
     

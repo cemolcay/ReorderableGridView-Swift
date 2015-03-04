@@ -9,83 +9,98 @@
 import UIKit
 
 
+// MARK: Frame Extensions
+
 extension UIView {
     
-    // MARK: Frame Extensions
+    convenience init (x: CGFloat,
+        y: CGFloat,
+        w: CGFloat,
+        h: CGFloat) {
+            self.init (frame: CGRect (x: x, y: y, width: w, height: h))
+    }
     
+
     var x: CGFloat {
-        return self.frame.origin.x
+        get {
+            return self.frame.origin.x
+        } set (value) {
+            self.frame = CGRect (x: value, y: self.y, width: self.w, height: self.h)
+        }
     }
     
     var y: CGFloat {
-        return self.frame.origin.y
+        get {
+            return self.frame.origin.y
+        } set (value) {
+            self.frame = CGRect (x: self.x, y: value, width: self.w, height: self.h)
+        }
     }
     
     var w: CGFloat {
-        return self.frame.size.width
+        get {
+            return self.frame.size.width
+        } set (value) {
+            self.frame = CGRect (x: self.x, y: self.y, width: value, height: self.h)
+        }
     }
     
     var h: CGFloat {
-        return self.frame.size.height
+        get {
+            return self.frame.size.height
+        } set (value) {
+            self.frame = CGRect (x: self.x, y: self.y, width: self.w, height: value)
+        }
     }
     
     
     var left: CGFloat {
-        return self.x
+        get {
+            return self.x
+        } set (value) {
+            self.x = value
+        }
     }
     
     var right: CGFloat {
-        return self.x + self.w
+        get {
+            return self.x + self.w
+        } set (value) {
+            self.x = value - self.w
+        }
     }
     
     var top: CGFloat {
-        return self.y
+        get {
+            return self.y
+        } set (value) {
+            self.y = value
+        }
     }
     
     var bottom: CGFloat {
-        return self.y + self.h
-    }
-    
-    
-    func setX (x: CGFloat) {
-        self.frame = CGRect (x: x, y: self.y, width: self.w, height: self.h)
-    }
-    
-    func setY (y: CGFloat) {
-        UIView.animateWithDuration(0.2, animations: { () -> Void in
-            self.frame = CGRect (x: self.x, y: y, width: self.w, height: self.h)
-        })
-    }
-    
-    func setX (x: CGFloat, y: CGFloat) {
-        self.frame = CGRect (x: x, y: y, width: self.w, height: self.h)
-    }
-    
-    
-    func setW (w: CGFloat) {
-        self.frame = CGRect (x: self.x, y: self.y, width: w, height: self.h)
-    }
-    
-    func setH (h: CGFloat) {
-        self.frame = CGRect (x: self.x, y: self.y, width: self.w, height: h)
-    }
-    
-    func setW (w: CGFloat, h: CGFloat) {
-        self.frame = CGRect (x: self.x, y: self.y, width: w, height: h)
-    }
-    
-    func setSize (size: CGSize) {
-        self.frame = CGRect (x: self.x, y: self.y, width: size.width, height: size.height)
-    }
-    
-    func setPosition (position: CGPoint) {
-        if (frame.origin == position) {
-            return
+        get {
+            return self.y + self.h
+        } set (value) {
+            self.y = value - self.h
         }
-        
-        UIView.animateWithDuration(0.2, animations: { () -> Void in
-            self.frame = CGRect (x: position.x, y: position.y, width: self.w, height: self.h)
-        })
+    }
+    
+    
+    var position: CGPoint {
+        get {
+            return self.frame.origin
+        } set (value) {
+            self.frame = CGRect (origin: value, size: self.frame.size)
+        }
+    }
+    
+    var size: CGSize {
+        get {
+            return self.frame.size
+        } set (value) {
+            self.frame = CGRect (origin: self.frame.origin, size: value)
+        }
     }
     
     
@@ -101,17 +116,18 @@ extension UIView {
         return self.top - offset
     }
     
-    func botttomWithOffset (offset: CGFloat) -> CGFloat {
+    func bottomWithOffset (offset: CGFloat) -> CGFloat {
         return self.bottom + offset
     }
     
-    
-    func setScale (x: CGFloat, y: CGFloat, z: CGFloat) {
-        self.transform = CGAffineTransformMakeScale(x, y)
-    }
-    
-    convenience init (x: CGFloat, y: CGFloat, w: CGFloat, h: CGFloat) {
-        self.init (frame: CGRect (x: x, y: y, width: w, height: h))
+    func setScale (
+        x: CGFloat,
+        y: CGFloat) {
+            var transform = CATransform3DIdentity
+            transform.m34 = 1.0 / -1000.0
+            transform = CATransform3DScale(transform, x, y, 1)
+            
+            self.layer.transform = transform
     }
 }
 
@@ -250,16 +266,16 @@ class ReorderableView: UIView, UIGestureRecognizerDelegate {
         
         superview?.bringSubviewToFront(self)
 
-        UIView.animateWithDuration(animationDuration, animations: { () -> Void in
+        UIView.animateWithDuration(animationDuration, animations: { [unowned self] in
             self.alpha = self.reorderModeAlpha
-            self.setScale(self.reorderModeScale, y: self.reorderModeScale, z: self.reorderModeScale)
+            self.setScale(self.reorderModeScale, y: self.reorderModeScale)
         })
     }
     
     func endReorderMode () {
-        UIView.animateWithDuration(animationDuration, animations: { () -> Void in
+        UIView.animateWithDuration(animationDuration, animations: { [unowned self] in
             self.alpha = 1
-            self.setScale(1, y: 1, z: 1)
+            self.setScale(1, y: 1)
         }) { finished -> Void in
             self.removePan()
         }
@@ -471,9 +487,9 @@ class ReorderableGridView: UIScrollView, Reorderable {
         view.delegate = self
         
         let pos = gridPositionToViewPosition(toGridPosition)
-        view.setPosition(pos)
+        view.position = pos
         
-        let height = view.botttomWithOffset(verticalPadding!)
+        let height = view.bottomWithOffset(verticalPadding!)
         if height > contentSize.height {
             setContentHeight(height)
         }
